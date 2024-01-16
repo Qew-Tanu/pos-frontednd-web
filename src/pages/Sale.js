@@ -21,26 +21,26 @@ export default function Sale() {
     }, [])
 
 
-    const handleOrder = (item) => {
-        const i = billdetails.findIndex((e) => e.id === item.id)
-        if (i > -1) {
-            const billcheck = billdetails.map(items => {
-                if (items.id === item.id) {
-                    return { ...items, Qty: items.Qty + 1 }
-                } else {
-                    return items
-                }
-            })
-            setbilldetails(billcheck)
+    // const handleOrder = (item) => {
+    //     const i = billdetails.findIndex((e) => e.id === item.id)
+    //     if (i > -1) {
+    //         const billcheck = billdetails.map(items => {
+    //             if (items.id === item.id) {
+    //                 return { ...items, Qty: items.Qty + 1 }
+    //             } else {
+    //                 return items
+    //             }
+    //         })
+    //         setbilldetails(billcheck)
 
 
-        } else {
-            const newItem = { ...item, Qty: 1 }
-            setbilldetails((prev) => [...prev, newItem])
-        }
+    //     } else {
+    //         const newItem = { ...item, Qty: 1 }
+    //         setbilldetails((prev) => [...prev, newItem])
+    //     }
 
 
-    }
+    // }
 
     const openBill = async () => {
         try {
@@ -106,6 +106,7 @@ export default function Sale() {
                     let sum = 0
                     res.data.results.billsaledetails.map(item => {
                         sum = sum + (parseInt(item.qty) * parseInt(item.price));
+                        return item
                     });
                     setsum(sum)
                 }
